@@ -83,6 +83,13 @@ Most rules come with a reason. When a case is not covered, follow the reason, no
     - One instruction per sentence.
     - Use simple, common words with one meaning. Use one term for one concept.
     - Write instructions in the imperative ("Close the file", not "The file should be closed").
+- Comments and docs describe the code as it is now, for a reader who was never part of the development/conversation.
+    - Never refer to a request, a review, or a previous version ("now", "as asked", "instead of before", "fixed", "changed to").
+    - Why: these are leftovers of a conversation, often between a human and an AI. The next reader has no context for them, and they become wrong after the next change.
+    - The history belongs in commit messages and pull requests, not in the code.
+    - Bad: `fn name() -> &str` with `/// Now returns a borrowed string as asked, not a plain string as before.`
+    - Good: `/// Returns the name. Borrowed, because it is called once per request and must not allocate.`
+        - Explaining *why* the code is like this is fine. Explaining *how it changed* is not.
 
 ## Misc
 
